@@ -1,0 +1,63 @@
+
+    <div class="bg-image"></div>
+    <div class="card" style="width:100%;margin-top: 20px;">
+        <div class="card-header" style="background-color: rgb(154, 115, 190);">
+            <h2>Liste des titulaires</h2>
+        </div>
+        <div class="card-body " style="background-color: rgb(208, 208, 219);">
+            <h2>Chercher :</h2>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="inputPassword2" class="search-label">par matricule</label>
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                        <input type="password" class="form-control" placeholder="Matricule">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <label for="inputPassword2" class="search-label">par Nom</label>
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                          <input type="password" class="form-control" placeholder="Nom">
+                        </div>
+                      </form>
+                </div>
+                <div class="col-sm-3">
+                    <label for="inputPassword2" class="search-label">par Email</label>
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                          <input type="password" class="form-control" placeholder="Email">
+                        </div>
+                      </form>
+                </div>
+                <div class="col-sm-3">
+                    <br>
+                        <button type="submit" class="btn btn-primary mb-2" (click)="onGetTitulaires()">Chercher</button> 
+                </div>
+            </div>
+        </div>    
+          
+            <table class="table" *ngIf="titulaires">
+                <thead>
+                  <tr>
+                    <th>Matricule</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                       
+                  <tr class="table-primary" *ngFor="let t of titulaires._embedded.titulaires">
+                    <td>{{t.matricule}}</td>
+                    <td>{{t.nom}}</td>
+                    <td>{{t.prenom}}</td>
+                    <td>{{t.email}}</td>
+                   
+                  </tr>
+                 
+                </tbody>
+              </table>
+       
+    </div>
