@@ -1,2 +1,4 @@
 .search-label{font-size: 13px;font-weight:bold;color: rgb(76, 76, 211);margin: 0px;padding: 0px;margin-left: 16px;}
-
+.clickable{
+    cursor: pointer;
+}
