@@ -14,7 +14,7 @@ export class TitulairesComponent implements OnInit {
  public matricule:String="";
  public nom:String="";
  public email:String="";
-  public size:number=1;
+  public size:number=6;
   public currentPage:number=0;
   public totalPages:number;
   public pages:Array<number>;

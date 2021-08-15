@@ -1,0 +1,67 @@
+
+  
+    <div class="card" style="width:100%;margin-top: 20px;">
+        <div class="card-header" style="background-color: rgb(154, 115, 190);">
+            <h2 style="color: rgb(208, 208, 219);" *ngIf="mode==1">Ajouter nouveau titulaire</h2>
+            <h2  style="color: rgb(208, 208, 219);"*ngIf="mode==0">Titulaire Ajouté</h2>
+            <div class="newT" *ngIf="mode==0"><button class="btn btn-dark" (click)="mode=1">Nouveau titulaire</button></div>
+        </div>
+        <div *ngIf="mode==1" class="card-body " style="background-color: rgb(208, 208, 219);">
+            
+            <form>
+                <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <label for="validationMatricule">Matricule</label>
+                    <input type="text" class="form-control"  id="validationMatricule" name="matricule" [(ngModel)]="titulaire.matricule" placeholder="First name" value="" required>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="validationNom">Nom</label>
+                    <input type="text" class="form-control" id="validationNom" name="nom" [(ngModel)]="titulaire.nom" placeholder="Last name" value="" required>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="validationPrenom">Prenom</label>
+                    <input type="text" class="form-control" id="validationPrenom" name="matricule" [(ngModel)]="titulaire.prenom" placeholder="Prenom" value="" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <label for="validationEmail">Email</label>
+                    <input type="text" class="form-control" id="validationEmail" name="email" [(ngModel)]="titulaire.email" placeholder="Email" value="" required>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label for="validationTelephone">Telephone</label>
+                    <input type="text" class="form-control" id="validationTelephone" name="telephone" [(ngModel)]="titulaire.telephone" placeholder="Telephone" required>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label for="validationDateRecrutement">Date de recrutement</label>
+                    <input type="date" class="form-control" id="validationDateRecrutement" name="dateRecrutement" [(ngModel)]="titulaire.dateRecrutement" placeholder="DD-MM-YYYY" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-3 mb-3">
+                    <div class="form-group">
+                      <label for="typeContrat">Type de contrat</label>
+                      <Select class="form-control"  id="typeContrat" name="typeContrat" [(ngModel)]="titulaire.typeContrat" ngDefaultControl  >   
+                        <option *ngFor="let type of typeContrats" [value]="type">{{type}}</option>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
+                
+                <button class="btn btn-primary" type="submit"  (click)="saveTitulaire()">Enregistrer</button>
+              </form>
+        </div>    
+        <div *ngIf="mode==0" class="card-body " style="background-color: rgb(208, 208, 219);">
+          <ul class="list-group">
+            <li class="list-group-item"><h3>id : {{titulaire.id}}</h3></li>
+            <li class="list-group-item"><h3>Nom :{{titulaire.nom}}</h3></li>
+            <li class="list-group-item"><h3>Prenom :{{titulaire.prenom}}</h3></li>
+            <li class="list-group-item"><h3>Emain :{{titulaire.email}}</h3></li>
+            <li class="list-group-item"><h3>Telephone :{{titulaire.telephone}}</h3></li>
+            <li class="list-group-item"><h3>Date de recrutement :{{titulaire.dateRecrutement}}</h3></li>
+            <li class="list-group-item"><h3>Type de contrat :{{titulaire.typeContrat}}</h3></li>
+
+          </ul>
+        </div>
+            
+    </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NewTitulaireComponent } from '../new-titulaire/new-titulaire.component';
 
 @Component({
   selector: 'app-navbar',
@@ -11,5 +12,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  changeModeTitulaire(){
+    NewTitulaireComponent.arguments.mode=1;
+  }
 }
