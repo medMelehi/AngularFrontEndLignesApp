@@ -1,5 +1,5 @@
 
-  
+
     <div class="card" style="width:100%;margin-top: 20px;">
         <div class="card-header" style="background-color: rgb(154, 115, 190);">
             <h2 style="color: rgb(208, 208, 219);" *ngIf="mode==1">Ajouter nouveau titulaire</h2>
@@ -7,50 +7,93 @@
             <div class="newT" *ngIf="mode==0"><button class="btn btn-dark" (click)="mode=1">Nouveau titulaire</button></div>
         </div>
         <div *ngIf="mode==1" class="card-body " style="background-color: rgb(208, 208, 219);">
-            
-            <form>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-row">
                   <div class="col-md-4 mb-3">
-                    <label for="validationMatricule">Matricule</label>
-                    <input type="text" class="form-control"  id="validationMatricule" name="matricule" [(ngModel)]="titulaire.matricule" placeholder="First name" value="" required>
+                    <label for="matricule">Matricule</label>
+                    <input type="text" class="form-control"  id="matricule" name="matricule" placeholder="Matricule" formControlName="matricule" >
+                    <div *ngIf="matricule.invalid && (matricule.dirty || matricule.touched)" class="">
+                      <div *ngIf="matricule.errors?.required" class="invalid">
+                        Matricule est obligatoire !
+                      </div>
+                      <div *ngIf="matricule.errors?.minlength" class="invalid">
+                        4 caractaire ou plus !
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-4 mb-3">
-                    <label for="validationNom">Nom</label>
-                    <input type="text" class="form-control" id="validationNom" name="nom" [(ngModel)]="titulaire.nom" placeholder="Last name" value="" required>
+                    <label for="Nom">Nom</label>
+                    <input type="text" class="form-control" id="Nom" name="nom" placeholder="Nom" formControlName="nom"  required>
+                    <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="">
+                      <div *ngIf="nom.errors?.required" class="invalid">
+                        Nom est obligatoire !
+                      </div>
+                      <div *ngIf="nom.errors?.minlength" class="invalid">
+                        4 caractaire ou plus !
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-4 mb-3">
-                    <label for="validationPrenom">Prenom</label>
-                    <input type="text" class="form-control" id="validationPrenom" name="matricule" [(ngModel)]="titulaire.prenom" placeholder="Prenom" value="" required>
+                    <label for="prenom">Prenom</label>
+                    <input type="text" class="form-control" id="prenom" name="Prenom"  placeholder="Prenom" formControlName="prenom" required>
+                    <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="">
+                      <div *ngIf="prenom.errors?.required" class="invalid">
+                        Prenom est obligatoire !
+                      </div>
+                      <div *ngIf="prenom.errors?.minlength" class="invalid">
+                        4 caractaire ou plus !
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
-                    <label for="validationEmail">Email</label>
-                    <input type="text" class="form-control" id="validationEmail" name="email" [(ngModel)]="titulaire.email" placeholder="Email" value="" required>
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" formControlName="email" required>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="">
+                      <div *ngIf="email.errors?.required" class="invalid">
+                        Email est obligatoire !
+                      </div>
+                      <div *ngIf="email.errors?.minlength" class="invalid">
+                        4 caractaire ou plus !
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-3 mb-3">
-                    <label for="validationTelephone">Telephone</label>
-                    <input type="text" class="form-control" id="validationTelephone" name="telephone" [(ngModel)]="titulaire.telephone" placeholder="Telephone" required>
+                    <label for="telephone">Telephone</label>
+                    <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone" formControlName="telephone" required>
+                    <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="">
+                      <div *ngIf="telephone.errors?.required" class="invalid">
+                        Telephone est obligatoire !
+                      </div>
+                      <div *ngIf="telephone.errors?.minlength" class="invalid">
+                        8 nombres ou plus !
+                      </div>
+                    </div>
                   </div>
+
                   <div class="col-md-3 mb-3">
-                    <label for="validationDateRecrutement">Date de recrutement</label>
-                    <input type="date" class="form-control" id="validationDateRecrutement" name="dateRecrutement" [(ngModel)]="titulaire.dateRecrutement" placeholder="DD-MM-YYYY" required>
+                    <label for="dateRecrutement">Date de recrutement</label>
+                    <input type="date" class="form-control" id="dateRecrutement" name="dateRecrutement"  placeholder="DD-MM-YYYY" formControlName="dateRecrutement" >
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="col-md-3 mb-3">
-                    <div class="form-group">
                       <label for="typeContrat">Type de contrat</label>
-                      <Select class="form-control"  id="typeContrat" name="typeContrat" [(ngModel)]="titulaire.typeContrat" ngDefaultControl  >   
-                        <option *ngFor="let type of typeContrats" [value]="type">{{type}}</option>
-                      </Select>
-                    </div>
+                    <select  formControlName="typeContrat"  class="form-control" id="typeContrat" name="typeContrat">
+                      <option *ngFor="let type of typeContrats" [ngValue]="type">
+                        {{ type.value }}
+                      </option>
+                    </select>
+
                   </div>
                 </div>
-                
-                <button class="btn btn-primary" type="submit"  (click)="saveTitulaire()">Enregistrer</button>
+
+                <button class="btn btn-primary" type="submit" [disabled]="!form.valid" >Enregistrer</button>
               </form>
-        </div>    
+
+        </div>
         <div *ngIf="mode==0" class="card-body " style="background-color: rgb(208, 208, 219);">
           <ul class="list-group">
             <li class="list-group-item"><h3>id : {{titulaire.id}}</h3></li>
@@ -63,5 +106,5 @@
 
           </ul>
         </div>
-            
+
     </div>

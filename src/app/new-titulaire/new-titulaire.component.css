@@ -3,3 +3,9 @@
     right: 10px;
     top: 18px;
 }
+
+.invalid {
+  padding-top:3px ;
+  font: 12px Arial, sans-serif;
+  color: red;
+}

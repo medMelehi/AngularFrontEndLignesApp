@@ -1,5 +1,5 @@
 
-  
+
     <div class="card" style="width:100%;margin-top: 20px;">
         <div class="card-header" style="background-color: rgb(154, 115, 190);">
             <h2>Liste des titulaires</h2>
@@ -8,7 +8,7 @@
             <h2>Chercher :</h2>
             <div class="row">
                 <div class="col-sm-3">
-                    <label for="inputPassword2" class="search-label">par matricule</label>
+                    <label for="mat" class="search-label">par matricule</label>
                     <form class="form-inline">
                         <div class="form-group mx-sm-3 mb-2">
                         <input id="mat" name="matricule" type="text" [(ngModel)]="matricule" class="form-control" placeholder="Matricule">
@@ -16,7 +16,7 @@
                     </form>
                 </div>
                 <div class="col-sm-3">
-                    <label for="inputPassword2" class="search-label">par Nom</label>
+                    <label for="nom" class="search-label">par Nom</label>
                     <form class="form-inline">
                         <div class="form-group mx-sm-3 mb-2">
                           <input id="nom" name="nom" type="text" [(ngModel)]="nom" class="form-control" placeholder="Nom">
@@ -24,7 +24,7 @@
                       </form>
                 </div>
                 <div class="col-sm-3">
-                    <label for="inputPassword2" class="search-label">par Email</label>
+                    <label for="email" class="search-label">par Email</label>
                     <form class="form-inline">
                         <div class="form-group mx-sm-3 mb-2">
                           <input id="email" name="email" type="text" [(ngModel)]="email" class="form-control" placeholder="Email">
@@ -33,11 +33,11 @@
                 </div>
                 <div class="col-sm-3">
                     <br>
-                        <button id="search" type="submit" [disabled]="matricule==='' && nom==='' && email===''" class="btn btn-primary mb-2" (click)="onSearchTitulaires()">Chercher</button> 
+                        <button id="search" type="submit" [disabled]="matricule==='' && nom==='' && email===''" class="btn btn-primary mb-2" (click)="onSearchTitulaires()">Chercher</button>
                 </div>
             </div>
-        </div>    
-          
+        </div>
+
             <table class="table" *ngIf="titulaires">
                 <thead>
                   <tr>
@@ -48,13 +48,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                       
+
                   <tr class="table-primary" *ngFor="let t of titulaires._embedded.titulaires">
                     <td>{{t.matricule}}</td>
                     <td>{{t.nom}}</td>
                     <td>{{t.prenom}}</td>
                     <td>{{t.email}}</td>
-                   
+
                   </tr >
                 </tbody>
               </table>
@@ -65,7 +65,7 @@
                       <span aria-hidden="true">&laquo;</span>
                       <span class="sr-only">Previous</span>
                     </a>
-                  </li> 
+                  </li>
                   <li [ngClass]="i==currentPage?'active':''" class="page-item clickable" *ngFor="let p of pages;let i=index;">
                     <a class="page-link" (click)="onPgaeTitulaire(i)">{{i+1}}</a>
                   </li>

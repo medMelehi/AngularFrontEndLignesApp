@@ -24,7 +24,7 @@ export class TitulairesComponent implements OnInit {
   ngOnInit(): void {
     var self = this;
     this.onSearchTitulaires();
- 
+
         $('#mat').focus(function(){
           self.nom="";
           self.email="";
@@ -40,8 +40,8 @@ export class TitulairesComponent implements OnInit {
         $('input').keyup(function(event){
 
           var mat = $('#mat').val();
-          var nom = $('#mat').val();
-          var email = $('#mat').val();
+          var nom = $('#nom').val();
+          var email = $('#email').val();
           console.log("mat:"+mat+"-nom:"+nom+"-email:"+email);
           if (mat =="" && nom =="" && email ==""  ) {
             console.log("empty inputs");
@@ -52,11 +52,11 @@ export class TitulairesComponent implements OnInit {
             $('#search').click();
           }
       });
-        
-    
+
+
   }
 
- 
+
   onPgaeTitulaire(i:number){
     this.currentPage=i;
     this.onSearchTitulaires();
@@ -79,7 +79,7 @@ export class TitulairesComponent implements OnInit {
     this.pages=new Array<number>(this.totalPages);
         },err=>{
       console.log("errroooor"+err);
-    }) 
+    })
   }
 
 
@@ -92,6 +92,6 @@ export class TitulairesComponent implements OnInit {
       this.pages=new Array<number>(this.totalPages);
         },err=>{
       console.log(err);
-    }) 
+    })
   } */
 }

@@ -3,12 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { TitulairesComponent } from './titulaires/titulaires.component';
 import { HomeComponent } from './home/home.component';
 import { NewTitulaireComponent } from './new-titulaire/new-titulaire.component';
+import {SiteComponent} from "./site/site.component";
+import {NewSiteComponent} from "./new-site/new-site.component";
 const routes: Routes = [
   { path: 'titulaires', component: TitulairesComponent },
   { path: 'newTitulaire', component: NewTitulaireComponent },
+  { path: 'newSite', component: NewSiteComponent },
+  { path: 'sites', component: SiteComponent },
   { path: 'Home', component: HomeComponent },
   { path: '', redirectTo :'/Home',pathMatch:"full"}
-  
+
 ];
 
 @NgModule({

@@ -1,0 +1,71 @@
+
+
+<div class="card" style="width:100%;margin-top: 20px;">
+  <div class="card-header" style="background-color: rgb(154, 115, 190);">
+    <h2 style="color: rgb(208, 208, 219);" *ngIf="mode==1">Ajouter nouveau site</h2>
+    <h2  style="color: rgb(208, 208, 219);"*ngIf="mode==0">Site Ajouté</h2>
+    <div class="newT" *ngIf="mode==0"><button class="btn btn-dark" (click)="mode=1">Nouveau site</button></div>
+  </div>
+  <div *ngIf="mode==1" class="card-body " style="background-color: rgb(208, 208, 219);">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="nom">Nom</label>
+          <input type="text" class="form-control"  id="nom" name="nom" placeholder="Nom" formControlName="nom" >
+          <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="">
+            <div *ngIf="nom.errors?.required" class="invalid">
+              Nom est obligatoire !
+            </div>
+            <div *ngIf="nom.errors?.minlength" class="invalid">
+              4 caractaire ou plus !
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="adresse">Adresse</label>
+          <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse" formControlName="adresse"  >
+          <div *ngIf="adresse.invalid && (adresse.dirty || adresse.touched)" class="">
+            <div *ngIf="adresse.errors?.required" class="invalid">
+              Adresse est obligatoire !
+            </div>
+            <div *ngIf="adresse.errors?.minlength" class="invalid">
+              4 caractaire ou plus !
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+         <div class="col-md-3 mb-3">
+          <label for="dateOuverture">Date d'ouverture</label>
+          <input type="date" class="form-control" id="dateOuverture" name="dateOuverture"  placeholder="DD-MM-YYYY" formControlName="dateOuverture" >
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="etat">Etat</label>
+          <select  formControlName="etat"  class="form-control" id="etat" name="etat">
+            <option *ngFor="let etat of etats" [ngValue]="etat.value">
+              {{ etat.value }}
+            </option>
+          </select>
+
+        </div>
+      </div>
+      <div class="form-row">
+
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid" >Enregistrer</button>
+    </form>
+
+  </div>
+  <div *ngIf="mode==0" class="card-body " style="background-color: rgb(208, 208, 219);">
+    <ul class="list-group">
+      <li class="list-group-item"><h3>id : {{site.id}}</h3></li>
+      <li class="list-group-item"><h3>Nom :{{site.nom}}</h3></li>
+      <li class="list-group-item"><h3>Adresse :{{site.adresse}}</h3></li>
+      <li class="list-group-item"><h3>Date d'ouverture :{{site.dateOuverture}}</h3></li>
+
+    </ul>
+  </div>
+
+</div>
