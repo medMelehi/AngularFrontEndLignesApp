@@ -10,7 +10,8 @@ import {SitesService} from "../services/sites.service";
   templateUrl: './new-site.component.html',
   styleUrls: ['./new-site.component.css']
 })
-export class NewSiteComponent implements OnInit {
+export class NewSiteComponent  implements OnInit {
+
 
   etats = [
     {key:'aucun',value:'aucun'},
